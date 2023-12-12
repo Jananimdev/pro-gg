@@ -5,7 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
+  StyleSheet,Image
 } from "react-native";
 
 const Home = ({ navigation }) => {
@@ -17,6 +17,11 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+            <Image
+        source={require('./icon.png')}
+        style={styles.icon}
+        resizeMode="contain"
+      />
       <Text style={styles.label}>Enter the Vehicle ID:</Text>
       <TextInput
         style={styles.input}
@@ -38,9 +43,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 20,
   },
+  icon: {
+    width: 100,
+    height: 100,
+    marginBottom: 80,
+    borderRadius: 50,
+  },
   label: {
     fontSize: 18,
     marginBottom: 10,
+    fontWeight:'bold'
   },
   input: {
     height: 40,

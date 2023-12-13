@@ -10,14 +10,20 @@ import {
   Button,
   TextInput,
   Text,
+  Alert,
 } from "react-native";
 import * as Location from "expo-location";
+import { AppContext } from "../../Context";
+import { useNavigation } from "@react-navigation/native";
 
 function Home() {
   const drawer = useRef(null);
+  const navigation = useNavigation();
+  const con = AppContext()
 
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+
 
   const Stack = createStackNavigator();
 
@@ -49,6 +55,20 @@ function Home() {
   const executeUserLocation = () => {
     userLocation();
   };
+  useEffect(()=>{
+    userLocation();
+  },[])
+
+
+  const Reduce = ()=>{
+    if(con.cash==0){
+      Alert.alert("Please recharge your wallet!")
+    }
+    else if(con.cash>0){
+      con.setCash(con.cash-20)
+      navigation.navigate("Wallet");
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -90,7 +110,7 @@ function Home() {
       <View style={styles.butContainer}>
         <Button
           title="Start"
-          //   onPress={}
+            onPress={Reduce}
           style={styles.but}
           color="red"
         />

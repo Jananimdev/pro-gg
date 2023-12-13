@@ -5,19 +5,27 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,Image
+  StyleSheet,
+  Image,
+  Alert, // Import Alert from React Native
 } from "react-native";
 
 const Home = ({ navigation }) => {
   const [vehicleID, setVehicleID] = React.useState("");
 
   const handleContinue = () => {
-    navigation.navigate("NextPage", { vehicleID });
+    const allowedVehicleIDs = ["v1", "v2", "v3"];
+
+    if (allowedVehicleIDs.includes(vehicleID)) {
+      navigation.navigate("NextPage", { vehicleID });
+    } else {
+      Alert.alert("Error", "Enter the correct vehicle ID");
+    }
   };
 
   return (
     <View style={styles.container}>
-            <Image
+      <Image
         source={require('./icon.png')}
         style={styles.icon}
         resizeMode="contain"
@@ -52,7 +60,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginBottom: 10,
-    fontWeight:'bold'
+    fontWeight: 'bold',
   },
   input: {
     height: 40,

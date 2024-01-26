@@ -175,7 +175,7 @@ const Otp = () => {
             <View>
               <Text style={styles.modalHeaderText}>Enter OTP</Text>
               <TextInput
-                placeholder="Enter OTP"
+                placeholder="Enter Otp"
                 onChangeText={setOtp}
                 keyboardType="number-pad"
                 style={styles.textInput}
